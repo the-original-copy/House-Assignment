@@ -28,6 +28,7 @@ use Visual Studio to run the project
 
 Use cmake to run the project. Make sure you have Makefile.txt
 You might have to include `glad.c` depending on your setup
+
 ```cmake
 cmake_minimum_required(VERSION 3.20)
 project(House-Assignment)
