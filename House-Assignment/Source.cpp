@@ -1,7 +1,5 @@
-//Jeff Chastine
-#include <Windows.h>
 #include <GL\glew.h>
-#include <GL/glut.h>
+#include <GL\glut.h>
 #include <math.h> 
 
 void init()
@@ -34,7 +32,7 @@ void home()
     glEnd();
 
     //Left window 
-    glColor3f(0.2, 0.4, 0.3);
+    glColor3f(0.1, 0.1, 0.3);
     glBegin(GL_POLYGON);
     glVertex2i(230, 320);
     glVertex2i(350, 320);
@@ -53,7 +51,7 @@ void home()
     glEnd();
 
     //right window
-    glColor3f(0.2, 0.4, 0.3);
+    glColor3f(0.1, 0.1, 0.3);
     glBegin(GL_POLYGON);
     glVertex2i(430, 320);
     glVertex2i(550, 320);
@@ -72,7 +70,7 @@ void home()
     glEnd();
 
     // Front Door
-    glColor3f(0.0, 0.0, 1.0);
+    glColor3f(0.1, 0.1, 0.3);
     glBegin(GL_POLYGON);
     glVertex2i(350, 200);
     glVertex2i(425, 200);
@@ -82,7 +80,7 @@ void home()
 
 
     // Front Door Lock/knob
-    glColor3f(0.2, 0.5, 0.9);
+    glColor3f(0.1, 0.7, 0.5);
     glPointSize(10);
     glBegin(GL_POINTS);
     glVertex2i(400, 150);
@@ -90,14 +88,14 @@ void home()
 
     //semi-circle roof
     //fix variable naming
-    glColor3f(0.2, 0.5, 0.1);
+    glColor3f(0.1, 0.1, 0.3);
     int centerx = 400;//x axis center
     int centery = 400;//y axis center
     int roofr = 100;//radius
     int roofd = 200;//diameter
     float PI = 3.141592653589793238f;
     float semicircleangle = PI * 1.0f;
-    int steps = 100;
+    int steps = 360;
     glBegin(GL_TRIANGLE_FAN);
     for (int i = 0; i < steps; i++) {
         float theta = semicircleangle * float(i) / float(steps);//get the current angle 
