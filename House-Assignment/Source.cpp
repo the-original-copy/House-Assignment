@@ -1,12 +1,14 @@
 #include <GL\glew.h>
 #include <GL\glut.h>
-#include <math.h> 
+#include <math.h>
+
+void draw_moon(int moonsteps, int moonr, int mooncenterx, int mooncentery);
 
 void init()
 
-{   
-    glClearColor(1.0, 1.0, 1.0, 0.0);// Set display window color
-    gluOrtho2D(0.0, 800, 0.0, 600); //Dosen't affect the z-plane    
+{
+    glClearColor(1.0, 1.0, 1.0, 0.0); // Set display window color
+    gluOrtho2D(0.0, 800, 0.0, 600);   //Dosen't affect the z-plane
 }
 
 void home()
@@ -26,7 +28,7 @@ void home()
     glVertex2i(600, 100);
     glEnd();
 
-    //Left window 
+    //Left window
     glColor3f(0.1, 0.1, 0.3);
     glBegin(GL_POLYGON);
     glVertex2i(230, 320);
@@ -54,7 +56,7 @@ void home()
     glVertex2i(430, 230);
     glEnd();
 
-    // lines on right window 
+    // lines on right window
     glColor3f(0.1, 0.7, 0.5);
     glLineWidth(3);
     glBegin(GL_LINES);
@@ -73,7 +75,6 @@ void home()
     glVertex2i(350, 100);
     glEnd();
 
-
     // Front Door handle
     glColor3f(0.1, 0.7, 0.5);
     glPointSize(10);
@@ -83,19 +84,20 @@ void home()
 
     //semi-circle roof
     glColor3f(0.1, 0.1, 0.3);
-    int centerx = 400;//x axis center
-    int centery = 400;//y axis center
-    int roofr = 100;//radius
-    int roofd = 200;//diameter
+    int centerx = 400; //x axis center
+    int centery = 400; //y axis center
+    int roofr = 100;   //radius
+    int roofd = 200;   //diameter
     float PI = 3.141592653589793238f;
     float semicircleangle = PI * 1.0f;
     int steps = 360;
     glBegin(GL_TRIANGLE_FAN);
-    for (int i = 0; i < steps; i++) {
-        float theta = semicircleangle * float(i) / float(steps);//get the current angle 
-        float x = roofr * cosf(theta);//calculate the x component 
-        float y = roofr * sinf(theta);//calculate the y component 
-        glVertex2f(x + centerx, y + centery);//output vertex 
+    for (int i = 0; i < steps; i++)
+    {
+        float theta = semicircleangle * float(i) / float(steps); //get the current angle
+        float x = roofr * cosf(theta);                           //calculate the x component
+        float y = roofr * sinf(theta);                           //calculate the y component
+        glVertex2f(x + centerx, y + centery);                    //output vertex
     }
     glEnd();
 
@@ -107,14 +109,7 @@ void home()
     int moonsteps = 100;
     float circleangle = PI * 2.0f;
     glColor3f(0.5, 0.35, 0.05);
-    glBegin(GL_TRIANGLE_FAN);
-    for (int a = 0; a <= moonsteps; a++) {
-        float angle = circleangle * float(a) / float(moonsteps);//get the current angle 
-        float moonx = moonr * cosf(angle);//calculate the x component 
-        float moony = moonr * sinf(angle);//calculate the y component 
-        glVertex2f(moonx + mooncenterx, moony + mooncentery);//output vertex 
-    }
-    glEnd();
+    draw_moon(moonsteps, moonr, mooncenterx, mooncentery);
 
     //second circle moon
     int moon2r = 50;
@@ -122,22 +117,13 @@ void home()
     int mooncenter2y = 525;
     int moonsteps2 = 100;
     float circleangle2 = PI * 2.0f;
-
     glColor3f(1.0, 1.0, 1.0);
-    glBegin(GL_TRIANGLE_FAN);
-    for (int b = 0; b <= moonsteps; b++) {
-        float angle2 = circleangle * float(b) / float(moonsteps2);//get the current angle 
-        float moon2x = moonr * cosf(angle2);//calculate the x component 
-        float moon2y = moonr * sinf(angle2);//calculate the y component 
-        glVertex2f(moon2x + mooncenter2x, moon2y + mooncenter2y);//output vertex 
-    }
-    glEnd();
-
+    draw_moon(moonsteps2, moon2r, mooncenter2x, mooncenter2y);
 
     glFlush();
 }
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -147,5 +133,18 @@ int main(int argc, char** argv)
     init();
     glutDisplayFunc(home);
     glutMainLoop();
+}
 
+void draw_moon(int moonsteps, int moonr, int mooncenterx, int mooncentery)
+{
+    float circleangle = PI * 2.0f;
+    glBegin(GL_TRIANGLE_FAN);
+    for (int a = 0; a <= moonsteps; a++)
+    {
+        float angle = circleangle * float(a) / float(moonsteps); //get the current angle
+        float moonx = moonr * cosf(angle);                       //calculate the x component
+        float moony = moonr * sinf(angle);                       //calculate the y component
+        glVertex2f(moonx + mooncenterx, moony + mooncentery);    //output vertex
+    }
+    glEnd();
 }
