@@ -4,21 +4,16 @@
 
 void init()
 
-{
-    // Set display window color to as glClearColor(R,G,B,Alpha)
-    glClearColor(1.0, 1.0, 1.0, 0.0);
-    // Set projection parameters.
-    glMatrixMode(GL_PROJECTION);
-    // Set 2D Transformation as gluOrtho2D(Min Width, Max Width, Min Height, Max Height)
-    gluOrtho2D(0.0, 800, 0.0, 600);
+{   
+    glClearColor(1.0, 1.0, 1.0, 0.0);// Set display window color
+    gluOrtho2D(0.0, 800, 0.0, 600); //Dosen't affect the z-plane    
 }
 
 void home()
 {
     glClear(GL_COLOR_BUFFER_BIT); // Clear display window
-    // Set line segment color as glColor3f(R,G,B)
 
-    //side Wall
+    //main body
     glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_LINE_LOOP);
     glVertex2i(200, 100);
@@ -42,7 +37,7 @@ void home()
 
     // lines on left window
     glColor3f(0.1, 0.7, 0.5);
-    glLineWidth(5);
+    glLineWidth(3);
     glBegin(GL_LINES);
     glVertex2i(290, 320);
     glVertex2i(290, 230);
@@ -61,7 +56,7 @@ void home()
 
     // lines on right window 
     glColor3f(0.1, 0.7, 0.5);
-    glLineWidth(5);
+    glLineWidth(3);
     glBegin(GL_LINES);
     glVertex2i(490, 320);
     glVertex2i(490, 230);
@@ -79,7 +74,7 @@ void home()
     glEnd();
 
 
-    // Front Door Lock/knob
+    // Front Door handle
     glColor3f(0.1, 0.7, 0.5);
     glPointSize(10);
     glBegin(GL_POINTS);
@@ -87,7 +82,6 @@ void home()
     glEnd();
 
     //semi-circle roof
-    //fix variable naming
     glColor3f(0.1, 0.1, 0.3);
     int centerx = 400;//x axis center
     int centery = 400;//y axis center
@@ -140,35 +134,18 @@ void home()
     glEnd();
 
 
-
-    // Process all OpenGL routine s as quickly as possible
     glFlush();
 }
 
 int main(int argc, char** argv)
 {
-    // Initialize GLUT
     glutInit(&argc, argv);
-
-    // Set display mode
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-
-    // Set top - left display window position.
     glutInitWindowPosition(100, 100);
-
-    // Set display window width and height
     glutInitWindowSize(900, 700);
-
-    // Create display window with the given title
-    glutCreateWindow("2D House Assignment");
-
-    // Execute initialization procedure
+    glutCreateWindow("House-Assignment");
     init();
-
-    // Send graphics to display window
     glutDisplayFunc(home);
-
-    // Display everything and wait.
     glutMainLoop();
 
 }
